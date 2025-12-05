@@ -1,0 +1,23 @@
+pip instal virtualenv
+virtualenv env
+linux ('source /env/bin/activate')  | windows (D:\Flask>"env/Scripts/activate.bat")
+pip install flask flask-sqlalchemy
+python app.py
+
+
+
+una vez echa la aplicacion y con sqlite configurado ejecutamos el comando python para acceder a consola
+python
+from app import app, db
+with app.app_context():
+    db.create_all()
+
+    /se crean dentro de la carpeta instance
+
+
+    al termino del proyecto se versiona congelando las dependencias
+    pip freeze > requirements.txt
+
+    git init
+    git add .
+    git commit -m "Init app"

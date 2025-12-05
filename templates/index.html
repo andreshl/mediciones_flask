@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Mediciones de Temperatura</title>
+{% endblock %}
+
+{% block body %}
+<div class="container" style="max-width: 900px; margin: auto;">
+    <h1 class="my-3">Mediciones de Temperatura</h1>
+
+    <!-- Gráfico -->
+    <canvas id="tempChart" style="max-height: 400px;"></canvas>
+
+    <!-- Tabla -->
+    <h3 class="mt-4">Histórico de mediciones</h3>
+    {% if labels|length < 1 %}
+        <p>No hay mediciones registradas.</p>
+    {% else %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha y hora</th>
+                <th>Temperatura (°C)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(labels|length) %}
+            <tr>
+                <td>{{ i + 1 }}</td>
+                <td>{{ labels[i] }}</td>
+                <td>{{ values[i] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    </form>
+</div>
+<script>
+    const labels = {{ labels|tojson }};
+    const values = {{ values|tojson }};
+
+    const ctx = document.getElementById('tempChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Temperatura (°C)',
+                data: values,
+                borderColor: '#e74c3c',
+                backgroundColor: 'rgba(231, 76, 60, 0.15)',
+                tension: 0.2,
+                pointRadius: 3
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: { title: { display: true, text: 'Fecha y hora' } },
+                y: { title: { display: true, text: 'Temperatura (°C)' } }
+            }
+        }
+    });
+
+    // Enviar medición manual vía fetch
+    async function enviarMedicion(event) {
+        event.preventDefault();
+        const value = document.getElementById('value').value;
+        const resp = await fetch('/api/measurements', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ value: parseFloat(value) })
+        });
+        if (resp.ok) {
+            alert('Medición guardada');
+            location.reload();
+        } else {
+            alert('Error al guardar medición');
+        }
+    }
+</script>
+{% endblock %}

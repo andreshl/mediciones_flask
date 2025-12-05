@@ -1,0 +1,58 @@
+body, html {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.content {
+    margin: 0 auto;
+    width: 90%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #aaa;
+}
+
+th, td {
+    border: 1px solid #aaa;
+    text-align: center;
+    padding: 8px;
+    font-family: sans-serif;
+    font-size: 0.8rem; /* Reducción general de fuente */
+}
+
+table th, table td {
+    font-size: 0.8rem !important;
+}
+
+th {
+    background-color: #f2f2f2;
+    height: 40px;
+}
+
+tr:hover {
+    background-color: royalblue;
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+tr:hover a {
+    color: white;
+    text-decoration: underline;
+}
+
+.form {
+    margin-top: 10px;
+}
+
+#content {
+    width: 90%;
+}
+
+.input-small {
+    font-size: 0.75rem;     /* Fuente más pequeña */
+    padding: 4px 6px;       /* Reduce el alto visual del input */
+    height: auto;           /* Asegura que no sea demasiado alto */
+    line-height: 1.2;       /* Mantiene proporción legible */
+}
