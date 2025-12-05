@@ -1,23 +1,9 @@
-pip instal virtualenv
-virtualenv env
-linux ('source /env/bin/activate')  | windows (D:\Flask>"env/Scripts/activate.bat")
-pip install flask flask-sqlalchemy
-python app.py
+http://127.0.0.1:5000/api/measurements/add?value=28.7
+http://127.0.0.1:5000/api/measurements
 
 
-
-una vez echa la aplicacion y con sqlite configurado ejecutamos el comando python para acceder a consola
-python
-from app import app, db
-with app.app_context():
-    db.create_all()
-
-    /se crean dentro de la carpeta instance
+https://github.com/andreshl/mediciones_flask
 
 
-    al termino del proyecto se versiona congelando las dependencias
-    pip freeze > requirements.txt
-
-    git init
-    git add .
-    git commit -m "Init app"
+https://mediciones-flask.onrender.com/api/measurements/add?value=28.7
+https://mediciones-flask.onrender.com/api/measurements

@@ -6,7 +6,7 @@
 
 {% block body %}
 <div class="container" style="max-width: 900px; margin: auto;">
-    <h1 class="my-3">Mediciones de Temperatura</h1>
+    <h1 class="my-3">Mediciones de Humedad</h1>
 
     <!-- Gráfico -->
     <canvas id="tempChart" style="max-height: 400px;"></canvas>
@@ -21,7 +21,7 @@
             <tr>
                 <th>ID</th>
                 <th>Fecha y hora</th>
-                <th>Temperatura (°C)</th>
+                <th>Humedad</th>
             </tr>
         </thead>
         <tbody>
@@ -47,7 +47,7 @@
         data: {
             labels: labels,
             datasets: [{
-                label: 'Temperatura (°C)',
+                label: 'Humedad',
                 data: values,
                 borderColor: '#e74c3c',
                 backgroundColor: 'rgba(231, 76, 60, 0.15)',
@@ -59,7 +59,7 @@
             responsive: true,
             scales: {
                 x: { title: { display: true, text: 'Fecha y hora' } },
-                y: { title: { display: true, text: 'Temperatura (°C)' } }
+                y: { title: { display: true, text: 'Humedad' } }
             }
         }
     });
