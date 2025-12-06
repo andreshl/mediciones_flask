@@ -31,14 +31,23 @@ def create_app():
     with app.app_context():
         db.create_all()
 
-    # =========================
-    # Rutas
-    # =========================
     @app.route('/', methods=['GET'])
     def index():
-        measurements = Measurement.query.order_by(Measurement.timestamp.asc()).limit(150)#.all()
+        # 1. Obtener los últimos 150 por timestamp
+        measurements = (
+            Measurement.query
+            .order_by(Measurement.timestamp.desc())
+            .limit(150)
+            .all()
+        )
+
+        # 2. Revertir el orden para dibujar correctamente (ascendente)
+        measurements.reverse()
+
+        # 3. Preparar data para la vista
         labels = [m.timestamp.strftime('%Y-%m-%d %H:%M:%S') for m in measurements]
         values = [m.value for m in measurements]
+
         return render_template('index.html', labels=labels, values=values)
 
 
